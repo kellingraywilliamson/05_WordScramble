@@ -20,6 +20,8 @@ struct ContentView: View {
     @State private var errorMessage = ""
     @State private var showingError = false
     
+    @State private var score = 0
+    
     //    MARK: Body
     var body: some View {
         NavigationView {
@@ -33,8 +35,10 @@ struct ContentView: View {
                     Image(systemName: "\($0.count).circle")
                     Text($0)
                 }
+                Text("Score \(score)")
             }
             .navigationBarTitle(rootWord)
+            .navigationBarItems(leading: Button("Reset", action: startGame))
             .onAppear(perform: startGame)
             .alert(isPresented: $showingError) { () -> Alert in
                 Alert(title: Text(errorTitle), message: Text(errorMessage), dismissButton: .default(Text("OK")))
@@ -65,12 +69,17 @@ struct ContentView: View {
             return
         }
         
+        score += answer.count
         usedWords.insert(answer, at: 0)
         newWord = ""
     }
     
     func isOriginal(word: String) -> Bool {
-        !usedWords.contains(word)
+        if word == rootWord {
+            return false
+        }
+        
+        return !usedWords.contains(word)
     }
     
     func isPossible(word: String) -> Bool {
@@ -88,6 +97,10 @@ struct ContentView: View {
     }
     
     func isRealWord(word: String) -> Bool {
+        if word.count < 3 {
+            return false
+        }
+        
         let checker = UITextChecker()
         let range = NSRange(location: 0, length: word.utf16.count)
         let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
@@ -106,6 +119,9 @@ struct ContentView: View {
             if let startWords = try? String(contentsOf: startWordsURL) {
                 let allWords = startWords.components(separatedBy: "\n")
                 rootWord = allWords.randomElement() ?? "silkworm"
+                
+                usedWords.removeAll(keepingCapacity: false)
+                score = 0
                 return
             }
         }
