@@ -24,6 +24,7 @@
 		8A806A6924B1E52F00041B08 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8A806A6C24B1E52F00041B08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A806A6E24B1E52F00041B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A806A7424B1E59800041B08 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +41,7 @@
 		8A806A5424B1E52B00041B08 = {
 			isa = PBXGroup;
 			children = (
+				8A806A7424B1E59800041B08 /* MyPlayground.playground */,
 				8A806A5F24B1E52B00041B08 /* 05_WordScramble */,
 				8A806A5E24B1E52B00041B08 /* Products */,
 			);
